@@ -2,8 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Movies from '../pages/Movies';
 import MoviesDetails from '../pages/MovieDetails';
-import { Gallery } from '../components/Gallery';
-import { Categories } from '../components/Categories';
+import { Rewieis } from '../components/Rewieis';
+import { Cast } from '../components/Cast';
 import { Layout } from './Layout';
 
 // import About from 'path/to/pages/About';
@@ -17,8 +17,8 @@ export const App = () => {
         <Route index element={<Home />} />
         <Route path="movies" element={<Movies />} />
         <Route path="movies/:movieId" element={<MoviesDetails />}>
-          <Route path="categories" element={<Categories />} />
-          <Route path="gallery" element={<Gallery />} />
+          <Route path="cast" element={<Cast />} />
+          <Route path="rewieis" element={<Rewieis />} />
         </Route>
         {/* <Route path="/products" element={<Products />} /> */}
         {/* <Route path="*" element={<NotFound />} /> */}

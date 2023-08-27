@@ -41,7 +41,7 @@ const Movies = () => {
 
   return (
     <div>
-      <h2>Коллекция фильмов</h2>
+      <h1>Films</h1>
       <div>
         <input type="text" value={movieId} onChange={updateQueryString} />
         <button onClick={() => setSearchParams({ c: 'hello' })}>
@@ -51,7 +51,9 @@ const Movies = () => {
           {filteredMovies.map(movie => {
             return (
               <li key={movie}>
-                <Link to={`${movie}`} state={{from: location}}>{movie}</Link>
+                <Link to={`${movie}`} state={{ from: location }}>
+                  {movie}
+                </Link>
               </li>
             );
           })}

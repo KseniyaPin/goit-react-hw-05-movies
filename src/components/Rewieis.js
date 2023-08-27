@@ -1,6 +1,6 @@
 const { useParams } = require('react-router-dom');
 
-export const Gallery = () => {
+export const Rewieis = () => {
   const { movieId } = useParams();
-  return <div>Image Gallery: {movieId}</div>;
+  return <div>Rewieis: {movieId}</div>;
 };

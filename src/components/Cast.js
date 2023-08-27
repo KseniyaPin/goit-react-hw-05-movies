@@ -1,10 +1,10 @@
 const { useParams } = require('react-router-dom');
 
-export const Categories = () => {
+export const Cast = () => {
   const { movieId } = useParams();
 
   // useEffect(() => {
   // http запрос
   // }, [])
-  return <div>Name categories: {movieId}</div>;
+  return <div>Cast: {movieId}</div>;
 };

@@ -13,14 +13,14 @@ const MovieDetails = () => {
 
   return (
     <>
-      <h1>MovieDetails: {movieId}</h1>
       <Link to={backLinkLocationRef.current}> Go back </Link>
+      <h2>Additional information: {movieId}</h2>
       <ul>
         <li>
-          <Link to="categories">Категории</Link>
+          <Link to="cast">Cast</Link>
         </li>
         <li>
-          <Link to="gallery">Галерея</Link>
+          <Link to="rewieis">Rewieis</Link>
         </li>
       </ul>
       <Outlet />

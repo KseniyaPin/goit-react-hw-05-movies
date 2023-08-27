@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const Home = () => {
-	// useEffect(() => {
-	// 	http запрос
-	// })
-	
-  return <div>Домашняя страница 7</div>;
+  // useEffect(() => {
+  // 	http запрос
+  // })
+
+  return <div>Trending today</div>;
 };
 
 export default Home;
