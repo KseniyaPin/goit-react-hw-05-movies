@@ -1,64 +1,73 @@
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  // типа наши фильмы с бэкэнда
-  const [movies, setMovies] = useState([
-    'Movies-1',
-    'Movies-2',
-    'Movies-3',
-    'Movies-4',
-    'Movies-5',
-  ]);
-  const location = useLocation();
+  const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   // Читаем строку, в зависимости от какого-то параметра
-  const movieId = searchParams.get('movieId') ?? '';
+  const movieId = searchParams.get('id') ?? '';
 
-  // useEffect(() => {
+  const url = `https://api.themoviedb.org/3/search/movie?query=${movieId}&include_adult=false&language=en-US&page=1`;
+
   // 	http запрос, чтобы получить список фильмов
-  // })
 
-  // Записываем параметр
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NTMwMzRiNTI4MTY1YzE4MjQwMTM2YzBmMzM4MjRjMCIsInN1YiI6IjY0ZTgzZWYzOTBlYTRiMDExZTc4ZTgwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.juvbZHO-iDNDBDlHJ9qABEJJAP9FTBctGdor2APc3oc',
+      },
+    };
+
+    fetch(url, options)
+      .then(response => response.json())
+      .then(json => setMovies(json.results))
+      .catch(errorMessage => console.log('Error message: ', errorMessage));
+  }, [url, fetch]);
+
+  // Записываем
+
   const updateQueryString = evt => {
-    const movieIdValue = evt.target.value;
-    if (movieIdValue === '') {
+    evt.preventDefault();
+    if (evt.target.movieIdValue.value === '') {
       return setSearchParams({});
     }
-    setSearchParams({ movieId: movieIdValue });
+    setSearchParams({ id: evt.target.movieIdValue.value });
+    evt.currentTarget.movieIdValue.value = '';
   };
+
   // фильтр фильма
-
-  // const filteredMovies = movies.filter(movie => movie.includes(movieId));
-
   const filteredMovies = useMemo(
-    () => movies.filter(movie => movie.includes(movieId)),
+    () =>
+      movies.filter(movie =>
+        movie.title.toLowerCase().includes(movieId.toLowerCase())
+      ),
     [movies, movieId]
   );
 
-  console.log(location);
-
   return (
     <div>
-      <h1>Films</h1>
-      <div>
-        <input type="text" value={movieId} onChange={updateQueryString} />
-        <button onClick={() => setSearchParams({ c: 'hello' })}>
-          Change sp
-        </button>
+      <form onSubmit={updateQueryString}>
+        <input type="text" name="movieIdValue" />
+        <button>Search movie</button>
+      </form>
+      {movies.length ? (
         <ul>
-          {filteredMovies.map(movie => {
-            return (
-              <li key={movie}>
-                <Link to={`${movie}`} state={{ from: location }}>
-                  {movie}
-                </Link>
-              </li>
-            );
-          })}
+          {filteredMovies.map(movie => (
+            <li key={movie.id}>
+              <Link to={`${movie.id}`} state={{ from: location }}>
+                <p> {movie.title}</p>
+              </Link>
+            </li>
+          ))}
         </ul>
-      </div>
+      ) : (
+        <h2>Sorry we don't have this movie.</h2>
+      )}
     </div>
   );
 };
