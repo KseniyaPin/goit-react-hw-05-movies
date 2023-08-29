@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const Cast = () => {
+// const { useParams } = require('react-router-dom');
+
+const Reviews = () => {
   const [state, setState] = useState([]);
   const { movieId } = useParams();
-
-  // const fetch = require('node-fetch');
-  const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews?language=en-US&page=1`;
 
   useEffect(() => {
     const options = {
@@ -20,27 +20,20 @@ const Cast = () => {
 
     fetch(url, options)
       .then(response => response.json())
-      .then(json => setState(json.cast))
+      .then(json => setState(json.results))
       .catch(errorMessage => console.log('Error message: ', errorMessage));
   }, [url, fetch]);
 
-  return (
-    <ul>
-      {state.map(movie => (
-        <li key={movie.id}>
-          <div>
-            <img
-              src={`https://image.tmdb.org/t/p/w200/${movie.profile_path}`}
-              alt={movie.name}
-            />
-          </div>
-
-          <p>{movie.name}</p>
-          <p>Character: {movie.character}</p>
-        </li>
-      ))}
-    </ul>
+  return state.length ? (
+    state.map(movie => (
+      <div key={movie.id}>
+        <h2>Author: {movie.author_details.username}</h2>
+        <p>{movie.content}</p>
+      </div>
+    ))
+  ) : (
+    <p>Sorry, information is missing.</p>
   );
 };
 
-export default Cast;
+export default Reviews;
