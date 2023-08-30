@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation, NavLink, useSearchParams } from 'react-router-dom';
-
-// const BASE_URL = 'https://api.themoviedb.org/';
-// const API_KEY = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NTMwMzRiNTI4MTY1YzE4MjQwMTM2YzBmMzM4MjRjMCIsInN1YiI6IjY0ZTgzZWYzOTBlYTRiMDExZTc4ZTgwYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.juvbZHO-iDNDBDlHJ9qABEJJAP9FTBctGdor2APc3oc';
-
-// const fetchVideo = require('node-fetch');
+import { Link, useLocation } from 'react-router-dom';
+import css from '../Home/Home.module.css';
 
 const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
 
@@ -30,16 +26,13 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Trending today</h1>
+      <h1 className={css.HomeTitle}>Trending today</h1>
       <ul>
         {movies
           ? movies.map(movie => {
               return (
-                <li key={movie.id}>
-                  <Link
-                    to={`movies/${movie.id}`}
-                    state={{ from: location }}
-                  >
+                <li key={movie.id} className={css.HomeList}>
+                  <Link to={`movies/${movie.id}`} state={{ from: location }}>
                     <div>
                       {/* <div>
                         <img
@@ -59,23 +52,5 @@ const Home = () => {
     </div>
   );
 };
-
-//   return (
-//     <>
-//       <div>Trending today</div>
-//       <ul>
-//         {movies.map(movie => {
-//           return (
-//             <li key={movie}>
-//               <Link to={`${movie}`} state={{ from: location }}>
-//                 {movie}
-//               </Link>
-//             </li>
-//           );
-//         })}
-//       </ul>
-//     </>
-//   );
-// };
 
 export default Home;

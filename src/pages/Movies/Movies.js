@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import css from '../Movies/Movies.module.css';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -51,14 +52,14 @@ const Movies = () => {
 
   return (
     <div>
-      <form onSubmit={updateQueryString}>
-        <input type="text" name="movieIdValue" />
-        <button>Search movie</button>
+      <form onSubmit={updateQueryString} className={css.Form}>
+        <input type="text" name="movieIdValue" className={css.FormInput} />
+        <button className={css.ButtonSearch}>Search movie</button>
       </form>
-      {movies.length ? (
-        <ul>
+      {movies !== '' ? (
+        <ul className={css.MovieList}>
           {filteredMovies.map(movie => (
-            <li key={movie.id}>
+            <li key={movie.id} className={css.MovieItem}>
               <Link to={`${movie.id}`} state={{ from: location }}>
                 <p> {movie.title}</p>
               </Link>
@@ -66,7 +67,7 @@ const Movies = () => {
           ))}
         </ul>
       ) : (
-        <h2>Sorry we don't have this movie.</h2>
+        <h2 className={css.MovieNo}>Sorry we don't have this movie.</h2>
       )}
     </div>
   );

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import css from '../Cast/Cast.module.css'
 
 const Cast = () => {
   const [state, setState] = useState([]);
   const { movieId } = useParams();
 
-  // const fetch = require('node-fetch');
   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
 
   useEffect(() => {
@@ -25,13 +25,14 @@ const Cast = () => {
   }, [url, fetch]);
 
   return (
-    <ul>
+    <ul className={css.CastList}>
       {state.map(movie => (
-        <li key={movie.id}>
+        <li key={movie.id} className={css.CastItem}>
           <div>
             <img
               src={`https://image.tmdb.org/t/p/w200/${movie.profile_path}`}
               alt={movie.name}
+              className={css.CastImg}
             />
           </div>
 

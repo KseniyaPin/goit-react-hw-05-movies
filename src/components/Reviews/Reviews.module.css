@@ -1,0 +1,18 @@
+.ReviewsInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 32px;
+}
+
+.ReviewsTitle {
+  font-size: 16px;
+  color: rgb(67, 15, 116);
+  margin-bottom: 4px;
+}
+
+.ReviewsText {
+  font-size: 14px;
+  color: rgb(49, 49, 50);
+  margin-bottom: 8px;
+}
+

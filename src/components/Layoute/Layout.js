@@ -1,14 +1,14 @@
 import { Link, Outlet } from 'react-router-dom';
+import css from '../Layoute/Layoute.module.css';
 
 export const Layout = () => {
   return (
-	  <div>
-
-      <ul>
-        <li>
+    <div>
+      <ul className={css.LayouteIList}>
+        <li className={css.LayouteItem}>
           <Link to="/">Home</Link>
         </li>
-        <li>
+        <li className={css.LayouteItem}>
           <Link to="/movies">Movies</Link>
         </li>
       </ul>

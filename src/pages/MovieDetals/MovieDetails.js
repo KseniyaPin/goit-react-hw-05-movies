@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import css from '../MovieDetals/MovieDetals.module.css';
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -29,14 +30,18 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={backLinkLocationRef.current}> Go back </Link>
+      <Link to={backLinkLocationRef.current} className={css.GoBack}>
+        {' '}
+        Go back{' '}
+      </Link>
 
-      <div>
+      <div className={css.WrappMovie}>
         <img
           src={`https://image.tmdb.org/t/p/w200/${state.poster_path}`}
           alt="Movies poster"
+          className={css.Poster}
         />
-        <div>
+        <div className={css.InfoMovie}>
           <h2>
             {state.title} ({new Date(state.release_date).getFullYear()})
           </h2>
@@ -54,9 +59,9 @@ const MovieDetails = () => {
       </div>
 
       <div>
-        <p>Additional information</p>
-        <ul>
-          <li>
+        <p className={css.Additional}>Additional information</p>
+        <ul className={css.AdditionalList}>
+          <li className={css.AdditionalItem}>
             <Link
               to={`/movies/${movieId}/cast`}
               state={backLinkLocationRef.current}
@@ -64,7 +69,7 @@ const MovieDetails = () => {
               Cast
             </Link>
           </li>
-          <li>
+          <li className={css.AdditionalItem}>
             <Link
               to={`/movies/${movieId}/reviews`}
               state={backLinkLocationRef.current}

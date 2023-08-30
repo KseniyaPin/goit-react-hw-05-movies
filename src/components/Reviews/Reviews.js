@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-// const { useParams } = require('react-router-dom');
+import css from '../Reviews/Reviews.module.css'
 
 const Reviews = () => {
   const [state, setState] = useState([]);
@@ -26,9 +25,9 @@ const Reviews = () => {
 
   return state.length ? (
     state.map(movie => (
-      <div key={movie.id}>
-        <h2>Author: {movie.author_details.username}</h2>
-        <p>{movie.content}</p>
+      <div key={movie.id} className={css.ReviewsInfo}>
+        <h2 className={css.ReviewsTitle}>Author: {movie.author_details.username}</h2>
+        <p className={css.ReviewsText}> {movie.content}</p>
       </div>
     ))
   ) : (
