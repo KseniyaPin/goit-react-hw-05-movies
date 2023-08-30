@@ -22,7 +22,7 @@ const Cast = () => {
       .then(response => response.json())
       .then(json => setState(json.cast))
       .catch(errorMessage => console.log('Error message: ', errorMessage));
-  }, [url, fetch]);
+  }, [url]);
 
   return (
     <ul className={css.CastList}>

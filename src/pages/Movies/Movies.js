@@ -28,7 +28,7 @@ const Movies = () => {
       .then(response => response.json())
       .then(json => setMovies(json.results))
       .catch(errorMessage => console.log('Error message: ', errorMessage));
-  }, [url, fetch]);
+  }, [url]);
 
   // Записываем
 

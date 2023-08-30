@@ -21,7 +21,7 @@ const Reviews = () => {
       .then(response => response.json())
       .then(json => setState(json.results))
       .catch(errorMessage => console.log('Error message: ', errorMessage));
-  }, [url, fetch]);
+  }, [url]);
 
   return state.length ? (
     state.map(movie => (

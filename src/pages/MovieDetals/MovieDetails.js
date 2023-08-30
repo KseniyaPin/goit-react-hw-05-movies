@@ -26,7 +26,7 @@ const MovieDetails = () => {
       .then(response => response.json())
       .then(json => setState(json))
       .catch(errorMessage => console.log('Error message: ', errorMessage));
-  }, [url, fetch]);
+  }, [url]);
 
   return (
     <>
