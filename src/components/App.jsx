@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
