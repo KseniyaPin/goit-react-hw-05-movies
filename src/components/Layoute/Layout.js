@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import css from '../Layoute/Layoute.module.css';
 
@@ -13,7 +14,9 @@ export const Layout = () => {
         </li>
       </ul>
       <main>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );
